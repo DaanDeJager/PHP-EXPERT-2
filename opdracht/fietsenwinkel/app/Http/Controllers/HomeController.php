@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Reparatie;
 
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -25,10 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
 
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        return view('home')->with('reps', $user->reps);
+        $data = [
+            'reps' => $user->reparaties,
+
+        ];
+
+        return view('home', $data);
 
     }
 }
