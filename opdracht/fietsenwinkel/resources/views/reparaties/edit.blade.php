@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a class="btn btn-primary mt-2 mb-2" href="/reparaties">Ga Terug</a>
+            <a class="btn btn-primary mt-2 mb-2" href="/home">Ga Terug</a>
             <div class="card">
                 <div class="card-header">Reparaties Inplannen</div>
 

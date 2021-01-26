@@ -63,6 +63,15 @@ nav,
 section {
   display: block;
 }
+.warning{
+    color: orange;
+}
+.success{
+    color: green;
+}
+.danger{
+    color: red;
+}
 
 body {
   margin: 0;

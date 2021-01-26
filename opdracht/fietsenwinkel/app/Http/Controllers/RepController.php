@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reparatie;
+use Illuminate\Support\Facades\Auth;
 
 class RepController extends Controller
 {
@@ -25,7 +26,15 @@ class RepController extends Controller
      */
     public function create()
     {
-        return view('reparaties.create');
+        $user = Auth::user();
+
+        $data = [
+            'fiets' => $user->fietsen,
+        ];
+
+        return view('reparaties.create', $data);
+
+
     }
 
     /**
@@ -48,11 +57,12 @@ class RepController extends Controller
             $reparatie->datum = $request->input('datum');
             $reparatie->tijdstip = $request->input('tijdstip');
             $reparatie->opmerkingen = $request->input('opmerkingen');
-            $reparatie->kosten = '20';
+            $reparatie->kosten = "Kosten worden berekend";
+            $reparatie->fietsen_id = $request->input('fiets_id');
             $reparatie->user_id = auth()->user()->id;
             $reparatie->save();
 
-            return redirect('/reparaties')->with('success', 'Reparatie Ingepland');
+            return redirect('/home')->with('success', 'Reparatie Ingepland');
     }
 
     /**
@@ -102,10 +112,10 @@ class RepController extends Controller
             $reparatie->datum = $request->input('datum');
             $reparatie->tijdstip = $request->input('tijdstip');
             $reparatie->opmerkingen = $request->input('opmerkingen');
-            $reparatie->kosten = '20';
+            $reparatie->kosten = $request->input('kosten');
             $reparatie->save();
 
-            return redirect('/reparaties')->with('success', 'Reparatie Updated');
+            return redirect('/home')->with('success', 'Reparatie Updated');
     }
 
     /**
@@ -119,7 +129,7 @@ class RepController extends Controller
         $rep = Reparatie::find($id);
         $rep->delete();
 
-        return redirect('/reparaties')->with('success', 'Reparatie Canceled');
+        return redirect('/home')->with('success', 'Reparatie Canceled');
 
     }
 }

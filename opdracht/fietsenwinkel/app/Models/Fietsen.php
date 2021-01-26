@@ -6,21 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
-class Reparatie extends Model
+class Fietsen extends Model
 {
-    use HasFactory;
-    protected $table = 'reparaties';
+    protected $table = 'fietsens';
     public $primaryKey = 'id';
+    public $timestamps = false;
+    use HasFactory;
 
     public function user(){
         return $this->belongsTo('App\Models\User');
         return $this->belongsTo('App\Models\User','user_id','id');
-
     }
-    public function fietsen(){
-        return $this->belongsTo('App\Models\Fietsen');
-        return $this->belongsTo('App\Models\Fietsen','fiets_id','id');
+    public function reparaties(){
+        return $this->hasMany('App\Models\Reparatie');
+
 
     }
 }
-

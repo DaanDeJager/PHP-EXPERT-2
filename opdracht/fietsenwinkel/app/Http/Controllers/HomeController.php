@@ -31,7 +31,6 @@ class HomeController extends Controller
 
         $data = [
             'reps' => $user->reparaties,
-
         ];
 
         return view('home', $data);

@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'telefoonnummer',
     ];
 
     /**
@@ -44,5 +45,10 @@ class User extends Authenticatable
 
     public function reparaties(){
         return $this->hasMany('App\Models\Reparatie');
+
+
+    }
+    public function fietsen(){
+        return $this->hasMany('App\Models\Fietsen');
     }
 }
